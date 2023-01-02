@@ -1,0 +1,29 @@
+BULLS AND COWS
+
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int l=secret.size();
+        int cb=0,cc=0;
+        map<int,int> m;
+        map<int,int> m1;
+        for(int i=0;i<l;i++)
+        {
+            if(secret[i]==guess[i])
+            cb++;
+            else
+            {
+                m[secret[i]-'0']++;
+                m1[guess[i]-'0']++;
+            }
+        }
+        for(auto i:m)
+        {
+            if(m1.find(i.first)!=m1.end())
+            cc+=min(m1[i.first],i.second);
+        }
+        string s="";
+        s=to_string(cb)+"A"+to_string(cc)+"B";
+        return s;
+    }
+};
